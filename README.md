@@ -17,12 +17,12 @@ BERT是一个基于Transformer的预训练模型，利用了Transformer的编码
 文章的后半部分主要是关于在各个任务上的实验表现以及消融实验，在附录中详细介绍了预训练和微调流程。  
 
 ## 利用BERT做一个文本分类任务
-使用pytorch和hugging face的transformers库，数据集为sentiment-analysis-on-movie-reviews。
-主要步骤为：
-1、文本嵌入表示  
-2、将5种情感转为独热码表示  
-3、搭建基于BERT的模型
-4、训练
+使用pytorch和hugging face的transformers库，数据集为sentiment-analysis-on-movie-reviews。  
+### 主要步骤为：
+### 1、文本嵌入表示  
+### 2、将5种情感转为独热码表示  
+### 3、搭建基于BERT的模型  
+### 4、训练
 在初始数据处理阶段还对数据集进行了划分，先总体打乱，然后将80%作为训练集，剩下20%作为测试集。关于文本的嵌入，使用的是transformers库提供的AutoTokenizer，非常方便。
 情感有5种：0.negative  1.somewhat negative  2.neutral  3.somewhat positive  4.positive
 使用独热编码即可。
