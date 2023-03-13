@@ -2,8 +2,9 @@
 BERT学习笔记+文本分类实现
 
 ## BERT
-BERT是一个基于Transformer的预训练模型，利用了Transformer的编码器进行叠加，从而在许多NLP任务上取得了sota的效果。
-![图片](https://user-images.githubusercontent.com/126166790/224623896-681be04c-ea03-46c9-b6df-89bf268b6809.png)
+BERT是一个基于Transformer的预训练模型，利用了Transformer的编码器进行叠加，从而在许多NLP任务上取得了sota的效果。  
+![图片](https://user-images.githubusercontent.com/126166790/224623896-681be04c-ea03-46c9-b6df-89bf268b6809.png)  
+
 
 它的核心思想是利用了双向思维，论文中说到语言模型的主要限制是单向性，而这限制了预训练时可选择的架构。文中提到了BERT比简单的单一方向以及从左到右结合从右到左（concatenation）效果都要好，并且利用了两种预训练的任务（完形填空和下句判断），这样得到的预训练模型只需要微调（fine-tuning）就能在下游任务中得到不错的效果。
 
@@ -13,9 +14,9 @@ BERT是一个基于Transformer的预训练模型，利用了Transformer的编码
 ## 预训练任务2——下句判断（Next Sentence Prediction NSP）
 可以输入1个句子也可以输入2个句子，用来预测第二个句子是不是位于第一个句子之后，用3个embedding对输入文本进行表示。
 
-文章的后半部分主要是关于在各个任务上的实验表现以及消融实验，在附录中详细介绍了预训练和微调流程。
+文章的后半部分主要是关于在各个任务上的实验表现以及消融实验，在附录中详细介绍了预训练和微调流程。  
 
-利用BERT做一个文本分类任务
+## 利用BERT做一个文本分类任务
 使用pytorch和hugging face的transformers库，数据集为sentiment-analysis-on-movie-reviews。
 主要步骤为：
 1、文本嵌入表示  
