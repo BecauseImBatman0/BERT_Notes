@@ -21,15 +21,15 @@ BERT是一个基于Transformer的预训练模型，利用了Transformer的编码
 >🤗抱抱脸：<https://github.com/huggingface/transformers>  
 
 数据集介绍:大致长这样，在每个句子后面的数字是情感。  
-情感有5种：**0.negative  1.somewhat negative  2.neutral  3.somewhat positive  4.positive  **
+情感有5种：**0.negative  1.somewhat negative  2.neutral  3.somewhat positive  4.positive**
 ![图片](https://user-images.githubusercontent.com/126166790/224625403-2fc4eee1-f6c2-4408-b97c-d884db4f6c7b.png)
 
 
 
 ### 主要步骤为：
 ### 1、文本嵌入表示  
-关于文本的嵌入，使用的是transformers库提供的AutoTokenizer，非常方便。
-'''py
+关于文本的嵌入，使用的是transformers库提供的AutoTokenizer，非常方便。  
+'''py  
 def text2embedding(text):
     tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
     embeding = tokenizer(text, padding="max_length", truncation=True, max_length=MAX_LENGTH)  # 超出最大长度时截断
