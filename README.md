@@ -29,7 +29,7 @@ BERT是一个基于Transformer的预训练模型，利用了Transformer的编码
 ### 主要步骤为：
 ### 1、文本嵌入表示  
 关于文本的嵌入，使用的是transformers库提供的AutoTokenizer，非常方便。  
-'''python    
+'''cpp    
 def text2embedding(text):
     tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
     embeding = tokenizer(text, padding="max_length", truncation=True, max_length=MAX_LENGTH)  # 超出最大长度时截断
