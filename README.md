@@ -36,11 +36,24 @@ def text2embedding(text):
     return embeding
 ```
 ### 2、将5种情感转为独热码表示  
-### 3、搭建基于BERT的模型  
+一个典型多分类问题，且标签只有5种，所以用独热码表示。  
+### 3、搭建基于BERT的模型 
+比较简单，加载BERT预训练模型，然后加了一个dropout，以及一个Linear层，然后softmax。
+```python  
+class BERT1(nn.Module):
+    def __init__(self):
+        super(BERT1,self).__init__()
+        self.pretrain_model=BertModel.from_pretrained("bert-base-uncased",return_dict=False)
+        self.dropout=nn.Dropout(0.3)
+        self.linear=nn.Linear(768,5) #BERR预训练模型输出768维张量
+        self.softmax=nn.Softmax(dim=-1)
+    def forward(self,input_ids,attention_mask,token_type_ids):
+        _,output1=self.pretrain_model(input_ids,attention_mask,token_type_ids)
+        output2=self.dropout(output1)
+        output3=self.linear(output2)
+        output=self.softmax(output3)
+        return output
+```   
 ### 4、训练
-在初始数据处理阶段还对数据集进行了划分，先总体打乱，然后将80%作为训练集，剩下20%作为测试集。关于文本的嵌入，使用的是transformers库提供的AutoTokenizer，非常方便。
-
-使用独热编码即可。
-
-模型构建：比较简单，加载BERT预训练模型，然后加了一个dropout，以及一个Linear层。
-损失函数使用交叉熵，但是适合效果没太好，优化器用Adam。完整代码如下。
+在初始数据处理阶段还对数据集进行了划分，先总体打乱，然后将80%作为训练集，剩下20%作为测试集。  
+损失函数使用交叉熵，优化器用Adam。
